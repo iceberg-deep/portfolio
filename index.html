@@ -128,6 +128,7 @@ section{padding:34px 0}
 footer{border-top:1px solid var(--border);margin-top:40px;padding:24px 0;
   font-family:var(--mono);font-size:12.5px;color:var(--muted);text-align:center}
 footer .accent{color:var(--accent-dim)}
+.view-count{color:var(--muted);font-size:11.5px;margin-top:6px;opacity:.85}
 
 @media print{
   header.nav,.cta,.contact .cta{display:none}
@@ -165,7 +166,7 @@ footer .accent{color:var(--accent-dim)}
     <span class="badge">OSCP</span>
     <span class="badge">CompTIA Security+</span>
     <span class="badge plain">~4 yrs SOC / blue team</span>
-    <span class="badge plain">CRTO &amp; CRTL labs</span>
+    <span class="badge plain">CRTO &amp; CRTL</span>
     <span class="badge plain">Oakland, CA</span>
   </div>
   <div class="cta">
@@ -307,7 +308,7 @@ footer .accent{color:var(--accent-dim)}
     <div class="skillcol">
       <h3>Programming</h3>
       <div class="chips">
-        <span class="chip">C++ (since VB6)</span><span class="chip">Python</span>
+        <span class="chip">C++</span><span class="chip">Python</span>
         <span class="chip">Rust</span><span class="chip">Bash</span>
       </div>
     </div>
@@ -397,7 +398,10 @@ footer .accent{color:var(--accent-dim)}
 
 </main>
 
-<footer><span class="accent">Justen James Phillips</span> · Detection-Informed Penetration Tester · Oakland, CA</footer>
+<footer>
+  <div><span class="accent">Justen James Phillips</span> · Detection-Informed Penetration Tester · Oakland, CA</div>
+  <div id="gc-views" class="view-count" aria-live="polite"></div>
+</footer>
 <script>
 // Reveal the name in the header only after the big hero title scrolls up behind the nav.
 (function(){
@@ -407,6 +411,27 @@ footer .accent{color:var(--accent-dim)}
   new IntersectionObserver(function(entries){
     name.classList.toggle('show', !entries[0].isIntersecting);
   }, {rootMargin:'-70px 0px 0px 0px', threshold:0}).observe(hero);
+})();
+</script>
+
+<!-- Privacy-friendly analytics (GoatCounter), wired the same way as the blog. -->
+<script data-goatcounter="https://iceberg-deep.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function(){
+  var SKIP='skipgc';
+  // Bookmarkable self-exclusion: open .../portfolio/#gc-toggle to flip counting off/on for this device.
+  if(location.hash==='#gc-toggle'){
+    if(localStorage.getItem(SKIP)==='t'){ localStorage.removeItem(SKIP); alert('GoatCounter: counting RE-ENABLED on this device.'); }
+    else { localStorage.setItem(SKIP,'t'); alert('GoatCounter: counting DISABLED on this device.'); }
+  }
+  // View badge from the public counter endpoint. Hidden until the count is non-zero.
+  var v=document.getElementById('gc-views');
+  if(v){
+    var url='https://iceberg-deep.goatcounter.com/counter/'+location.pathname+'.json';
+    fetch(url).then(function(r){return r.json();}).then(function(d){
+      if(d&&d.count!=null&&d.count!=='0'){ v.textContent=d.count+(d.count==='1'?' view':' views'); }
+    }).catch(function(){});
+  }
 })();
 </script>
 </body>
