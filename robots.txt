@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://iceberg-deep.github.io/portfolio/sitemap.xml

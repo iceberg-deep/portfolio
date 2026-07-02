@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0d0a">
+<title>Justen James Phillips · Detection-Informed Penetration Tester (OSCP)</title>
+<meta name="description" content="Penetration tester with ~4 years in security operations (SOC, incident response, threat hunting) moving into offensive security. OSCP + Security+. 180 HackTheBox writeups, NCL Gold ×2, CodePath CTF 1st nationally.">
+<link rel="canonical" href="https://iceberg-deep.github.io/portfolio/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Open Graph / social preview (add assets/og.png for a link thumbnail) -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Justen James Phillips · Detection-Informed Penetration Tester (OSCP)">
+<meta property="og:description" content="SOC analyst (~4 yrs) moving into offensive security. OSCP + Security+. 180 HackTheBox writeups, NCL Gold ×2, CodePath CTF 1st nationally.">
+<meta property="og:url" content="https://iceberg-deep.github.io/portfolio/">
+<meta property="og:image" content="https://iceberg-deep.github.io/portfolio/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --bg:#0a0d0a; --bg2:#0e120d; --panel:#11160f; --panel2:#151b12;
+  --text:#dce7d6; --muted:#8aa07f; --accent:#C2F761; --accent-dim:#9fcf4a;
+  --border:rgba(194,247,97,.22); --border-hi:rgba(194,247,97,.55);
+  --mono:'JetBrains Mono','Fira Code','SFMono-Regular',Consolas,'Liberation Mono',monospace;
+  --sans:system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:
+    radial-gradient(900px 500px at 82% -8%, rgba(194,247,97,.09), transparent 60%),
+    radial-gradient(700px 420px at -5% 8%, rgba(124,247,124,.05), transparent 55%), var(--bg);
+  color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:#fff}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+
+/* ── nav ── */
+header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);
+  background:rgba(10,13,10,.8);border-bottom:1px solid var(--border)}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:18px}
+.brand{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--text);white-space:nowrap}
+.brand .mark{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-family:var(--mono);font-size:13.5px;align-items:center}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--accent)}
+.nav-links .btn{border:1px solid var(--border-hi);border-radius:8px;padding:7px 13px;color:var(--accent)}
+.nav-links .btn:hover{background:rgba(194,247,97,.1);color:#fff}
+@media(max-width:720px){.nav-links a:not(.btn){display:none}}
+
+/* ── hero ── */
+.hero{padding:56px 0 30px}
+.term{font-family:var(--mono);font-size:clamp(16px,2.8vw,21px);color:var(--muted);margin-bottom:18px}
+.term .pf{color:#2777ff;font-weight:700}.term .run{color:var(--accent)}
+.hero h1{font-family:var(--mono);font-size:clamp(30px,6vw,50px);line-height:1.05;letter-spacing:-1px}
+.hero h1 .accent{color:var(--accent)}
+.tagline{font-family:var(--mono);font-size:clamp(15px,2.6vw,20px);color:var(--accent-dim);margin-top:14px;line-height:1.35}
+.subline{color:var(--muted);margin-top:12px;max-width:70ch;font-size:16px}
+.badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.badge{font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;
+  border:1px solid var(--border-hi);color:var(--accent);background:rgba(194,247,97,.06)}
+.badge.plain{color:var(--muted);border-color:var(--border)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.cta a{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:14px;
+  border:1px solid var(--border);border-radius:9px;padding:11px 18px;color:var(--text);background:var(--panel);transition:.18s}
+.cta a:hover{border-color:var(--border-hi);color:var(--accent);transform:translateY(-2px)}
+.cta a.primary{background:var(--accent);color:#0a0d0a;border-color:var(--accent);font-weight:700}
+.cta a.primary:hover{background:#d4ff7a;color:#0a0d0a}
+.cta svg{width:16px;height:16px;fill:currentColor}
+
+/* ── stat strip ── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:38px 0 8px}
+.stat{border:1px solid var(--border);border-radius:12px;padding:18px 16px;background:linear-gradient(180deg,var(--panel),var(--bg2));text-align:center}
+.stat .n{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--accent);line-height:1}
+.stat .l{color:var(--muted);font-size:12.5px;margin-top:8px;line-height:1.35}
+
+/* ── sections ── */
+section{padding:34px 0}
+.sec-head{display:flex;align-items:center;gap:14px;margin:0 0 22px}
+.sec-head h2{font-family:var(--mono);font-size:22px;color:var(--text);white-space:nowrap}
+.sec-head h2 .hash{color:var(--accent)}
+.sec-head .line{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.lead{color:#cbd6c4;font-size:16.5px;max-width:74ch}
+.lead+.lead{margin-top:14px}
+
+/* ── timeline ── */
+.tl{position:relative;margin-left:8px;padding-left:26px;border-left:1px solid var(--border)}
+.job{position:relative;padding:0 0 26px}
+.job:last-child{padding-bottom:0}
+.job::before{content:"";position:absolute;left:-33px;top:5px;width:11px;height:11px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 0 4px var(--bg),0 0 12px rgba(194,247,97,.5)}
+.job h3{font-family:var(--mono);font-size:17px;color:var(--text)}
+.job .meta{font-family:var(--mono);font-size:12.5px;color:var(--accent-dim);margin:3px 0 9px}
+.job ul{margin:0;padding-left:18px;color:var(--muted);font-size:14.5px}
+.job li{margin:4px 0}
+
+/* ── cards / grids ── */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{border:1px solid var(--border);border-radius:13px;padding:20px;background:linear-gradient(180deg,var(--panel),var(--bg2));transition:.2s}
+.card:hover{border-color:var(--border-hi);transform:translateY(-3px)}
+.card h3{font-family:var(--mono);font-size:16.5px;color:var(--text);margin-bottom:4px}
+.card .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent-dim);margin-bottom:10px}
+.card p{color:var(--muted);font-size:14px}
+.card .go{font-family:var(--mono);font-size:13px;color:var(--accent);display:inline-block;margin-top:12px}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.skillcol h3{font-family:var(--mono);font-size:14px;color:var(--accent);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:var(--mono);font-size:12px;color:var(--text);border:1px solid var(--border);border-radius:7px;padding:5px 10px;background:rgba(255,255,255,.02)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.two{grid-template-columns:1fr}}
+.block{border:1px solid var(--border);border-radius:13px;padding:20px;background:linear-gradient(180deg,var(--panel),var(--bg2))}
+.block h3{font-family:var(--mono);font-size:16px;color:var(--text);margin-bottom:12px}
+.block ul{list-style:none}
+.block li{color:var(--muted);font-size:14.5px;padding:7px 0;border-bottom:1px dashed var(--border)}
+.block li:last-child{border-bottom:none}
+.block li b{color:var(--text);font-weight:600}
+.block li .note{color:var(--accent-dim);font-family:var(--mono);font-size:12px}
+
+/* ── contact ── */
+.contact{border:1px solid var(--border-hi);border-radius:14px;padding:32px 24px;text-align:center;
+  background:radial-gradient(600px 300px at 50% -40%,rgba(194,247,97,.1),transparent 70%),linear-gradient(180deg,var(--panel),var(--bg2))}
+.contact h2{font-family:var(--mono);font-size:24px;color:var(--text)}
+.contact p{color:var(--muted);margin:10px auto 20px;max-width:56ch}
+.contact .cta{justify-content:center}
+
+footer{border-top:1px solid var(--border);margin-top:40px;padding:24px 0;
+  font-family:var(--mono);font-size:12.5px;color:var(--muted);text-align:center}
+footer .accent{color:var(--accent-dim)}
+
+@media print{
+  header.nav,.cta,.contact .cta{display:none}
+  body{background:#fff;color:#111}
+  a{color:#111;text-decoration:underline}
+  .card,.block,.stat,.contact{border-color:#ccc;background:#fff}
+  .accent,.hero h1 .accent,.stat .n,.sec-head h2 .hash{color:#111}
+  section{padding:14px 0}
+  .job::before{box-shadow:none;background:#111}
+}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <span class="brand"><span class="mark">⛰</span> Justen James Phillips</span>
+  <nav class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#contact" class="btn">Contact</a>
+  </nav>
+</div></header>
+
+<main>
+
+<!-- ── HERO ── -->
+<section class="hero"><div class="wrap">
+  <div class="term"><span class="pf">$</span> <span class="run">whoami</span></div>
+  <h1>Justen James <span class="accent">Phillips</span></h1>
+  <div class="tagline">Detection-Informed Penetration Tester</div>
+  <p class="subline">Around four years in security operations across SOC analysis, incident response, and threat hunting, now moving into offensive security. I test the way defenders actually catch you, because catching attackers was the job for four years.</p>
+  <div class="badges">
+    <span class="badge">OSCP</span>
+    <span class="badge">CompTIA Security+</span>
+    <span class="badge plain">~4 yrs SOC / blue team</span>
+    <span class="badge plain">CRTO &amp; CRTL labs</span>
+    <span class="badge plain">Oakland, CA</span>
+  </div>
+  <div class="cta">
+    <a href="#contact" class="primary">Get in touch</a>
+    <a href="https://github.com/iceberg-deep" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+      GitHub</a>
+    <a href="https://www.linkedin.com/in/iceberg-deep" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.51C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+      LinkedIn</a>
+    <a href="https://iceberg-deep.github.io/blog" target="_blank" rel="noopener">Security blog →</a>
+  </div>
+
+  <!-- proof at a glance -->
+  <div class="stats">
+    <div class="stat"><div class="n">~4 yrs</div><div class="l">SOC / blue team<br>(Analyst I → III)</div></div>
+    <div class="stat"><div class="n">OSCP</div><div class="l">OffSec certified<br>(2023)</div></div>
+    <div class="stat"><div class="n">180</div><div class="l">HackTheBox<br>writeups published</div></div>
+    <div class="stat"><div class="n">Gold ×2</div><div class="l">National Cyber League<br>(binary exploitation)</div></div>
+    <div class="stat"><div class="n">1st</div><div class="l">CodePath web-app CTF<br>nationally</div></div>
+  </div>
+</div></section>
+
+<!-- ── ABOUT ── -->
+<section id="about"><div class="wrap">
+  <div class="sec-head"><h2><span class="hash">#</span> About</h2><div class="line"></div></div>
+  <p class="lead">I was raised in the SOC. Four years in the blue dark, watching the boards light up at 3 a.m., triaging alerts nobody else wanted, walking the wreckage of other people's incidents, and reading the story the malware left behind. I learned the glass from the inside. Which alerts scream and which ones die quiet in a queue nobody reads, where the sensors go blind, where the logs just stop.</p>
+  <p class="lead">Now I'm on the other side of the mirror.</p>
+  <p class="lead">Junior on offense, and I won't pretend otherwise. But I carry something most of the fresh ones don't. I remember being the one who was supposed to catch me. Every move I make, there's a ghost of an analyst at my shoulder asking, "Will this trip the wire?" And most of the time I already know the answer, because that used to be my wire.</p>
+  <p class="lead">Scope to execution to findings to the slow bleed of remediation after. I've walked the whole arc.</p>
+  <p class="lead">And when the tooling gets in my way, I stop asking it for permission. I build my own.</p>
+</div></section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience"><div class="wrap">
+  <div class="sec-head"><h2><span class="hash">#</span> Experience</h2><div class="line"></div></div>
+  <div class="tl">
+
+    <div class="job">
+      <h3>Penetration Tester, Freelance</h3>
+      <div class="meta">Dae-Sec LLC · Remote · Sep 2024 – Present</div>
+      <ul>
+        <li>Run penetration-testing engagements end to end, from scoping and execution to findings and remediation follow-through.</li>
+        <li>Perform attack-surface analysis, identify vulnerabilities, and advise clients on prioritized fixes.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Cybersecurity Operations Analyst III</h3>
+      <div class="meta">Robert Half · Remote · Dec 2022 – Sep 2024</div>
+      <ul>
+        <li>Ran security operations at the Analyst III level, handling detection, incident response, and threat hunting across the environment.</li>
+        <li>Built and tested security tooling and proof-of-concepts, applying offensive insight to strengthen detections.</li>
+        <li>Reverse-engineered malware and suspicious binaries during IR / DFIR to extract IoCs and characterize attacker capability.</li>
+        <li>Authored runbooks, standardized procedures, and mentored junior analysts.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Security Analyst II</h3>
+      <div class="meta">Robert Half · Remote · Oct 2020 – Dec 2022</div>
+      <ul>
+        <li>Handled escalated security incidents and incident response.</li>
+        <li>Conducted threat hunting, analyzed alerts, and developed IoCs / IoAs.</li>
+        <li>Supported data loss prevention and developed runbooks; mentored junior analysts.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Security Analyst I</h3>
+      <div class="meta">Robert Half · San Ramon, CA · Jan 2020 – Oct 2020</div>
+      <ul>
+        <li>Performed SOC alert and email triage; classified user-reported phishing.</li>
+        <li>Conducted Data Loss Prevention (DLP) analysis and malware reverse engineering for threat insight.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Application Security Intern → full-time</h3>
+      <div class="meta">Robert Half · San Ramon, CA · May 2019 – Jan 2020</div>
+      <ul>
+        <li>Supported security engineering and the SOC with application security testing.</li>
+        <li>Performed payload testing and vulnerability identification in critical applications; converted to full-time Analyst I.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Penetration Tester, Freelance</h3>
+      <div class="meta">Exposure Security · SF Bay Area · Jan 2019 – Jan 2020</div>
+      <ul>
+        <li>Conducted web application penetration tests and assume-breach adversary emulation.</li>
+        <li>Executed full-scope tests, reported vulnerabilities, and collaborated with senior consultants on attack scenario simulation.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>IT Support / Helpdesk</h3>
+      <div class="meta">Merritt College · Oakland, CA</div>
+      <ul>
+        <li>Provided hardware, software, account, and end-user support across campus systems.</li>
+        <li>Built an early hands-on foundation in systems, troubleshooting, and end-user support.</li>
+      </ul>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- ── SKILLS ── -->
+<section id="skills"><div class="wrap">
+  <div class="sec-head"><h2><span class="hash">#</span> Skills</h2><div class="line"></div></div>
+  <div class="skills">
+    <div class="skillcol">
+      <h3>Offensive</h3>
+      <div class="chips">
+        <span class="chip">Web-app pentesting</span><span class="chip">Network pentesting</span>
+        <span class="chip">Burp Suite</span><span class="chip">OWASP Top 10</span>
+        <span class="chip">Vuln validation &amp; repro</span><span class="chip">CVSS scoring</span>
+        <span class="chip">Offensive tooling (Rust)</span><span class="chip">Red-team technique (CRTO/CRTL)</span>
+        <span class="chip">Detection-informed testing</span>
+      </div>
+    </div>
+    <div class="skillcol">
+      <h3>Defensive</h3>
+      <div class="chips">
+        <span class="chip">SOC operations</span><span class="chip">Incident response</span>
+        <span class="chip">Threat hunting</span><span class="chip">DFIR</span>
+        <span class="chip">IoC / IoA development</span><span class="chip">Vulnerability assessment</span>
+        <span class="chip">Detection engineering</span><span class="chip">Technical reporting</span>
+      </div>
+    </div>
+    <div class="skillcol">
+      <h3>Reverse Engineering</h3>
+      <div class="chips">
+        <span class="chip">Malware analysis</span><span class="chip">Binary RE</span>
+        <span class="chip">Disassembly</span><span class="chip">Debugging</span>
+        <span class="chip">Payload development</span>
+      </div>
+    </div>
+    <div class="skillcol">
+      <h3>Programming</h3>
+      <div class="chips">
+        <span class="chip">C++ (since VB6)</span><span class="chip">Python</span>
+        <span class="chip">Rust</span><span class="chip">Bash</span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── WORK / PROOF ── -->
+<section id="work"><div class="wrap">
+  <div class="sec-head"><h2><span class="hash">#</span> Selected Work</h2><div class="line"></div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Vector</h3>
+      <div class="tag">self-built · web application security</div>
+      <p>A teaching tool I built from scratch that walks through intermediate-to-hard web application vulnerabilities hands-on. The trainer I wish I'd had when I was learning offense.</p>
+    </div>
+    <a class="card" href="https://iceberg-deep.github.io/blog" target="_blank" rel="noopener">
+      <h3>Security blog, 180 HackTheBox writeups</h3>
+      <div class="tag">iceberg-deep.github.io/blog</div>
+      <p>A public, searchable archive of 180 machine writeups covering full attack chains across web, Active Directory, Windows and Linux privilege escalation, binary exploitation, and reverse engineering, written like the walkthrough I wish someone had handed me.</p>
+      <span class="go">Read the writeups →</span>
+    </a>
+    <a class="card" href="https://github.com/iceberg-deep" target="_blank" rel="noopener">
+      <h3>Open-source tooling</h3>
+      <div class="tag">github.com/iceberg-deep</div>
+      <p>When existing tools get in the way, I ship my own. Small, dependency-light utilities and dashboards, built and released in the open.</p>
+      <span class="go">Browse GitHub →</span>
+    </a>
+    <div class="card">
+      <h3>Independent research</h3>
+      <div class="tag">lab &amp; CTF environments</div>
+      <p>Ongoing web application attack-surface research in labs and competition. No public disclosures. Findings stay in scope.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── CREDENTIALS ── -->
+<section id="credentials"><div class="wrap">
+  <div class="sec-head"><h2><span class="hash">#</span> Certifications, Education &amp; Honors</h2><div class="line"></div></div>
+  <div class="two">
+    <div class="block">
+      <h3>Certifications &amp; Training</h3>
+      <ul>
+        <li><b>OSCP</b> · Offensive Security Certified Professional, OffSec <span class="note">(Sep 2023)</span></li>
+        <li><b>CompTIA Security+</b> <span class="note">(2020)</span></li>
+        <li><b>CRTO</b> · Zero-Point Security <span class="note">course &amp; labs completed, not certified</span></li>
+        <li><b>CRTL</b> · Zero-Point Security <span class="note">course &amp; labs completed, not certified</span></li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Education</h3>
+      <ul>
+        <li><b>B.S., Cybersecurity &amp; Information Assurance</b><br>Western Governors University <span class="note">in progress, started 2026</span></li>
+        <li><b>A.S., Computer Information Systems</b><br>Merritt College <span class="note">2015–2019 · GPA 3.8 · highest honors</span></li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Honors</h3>
+      <ul>
+        <li><b>National Cyber League Gold, twice</b> <span class="note">clutch binary patch on the hardest enumeration &amp; exploitation challenge</span></li>
+        <li><b>CodePath web-app CTF (Facebook-sponsored), 1st nationally</b> <span class="note">among thousands of university &amp; veteran competitors</span></li>
+        <li><b>Cyber FastTrack 2019</b> <span class="note">National Cyber Scholarship Foundation</span></li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>What I'm known for</h3>
+      <ul>
+        <li>Bringing a <b>defender's eye to offense</b>. I test the way real detections fire.</li>
+        <li>Running engagements <b>end to end</b>, from scope to remediation follow-through.</li>
+        <li>Learning in public, with <b>180 writeups</b> and a tool built to teach.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── CONTACT ── -->
+<section id="contact"><div class="wrap">
+  <div class="contact">
+    <h2>Let's talk</h2>
+    <p>Open to detection-informed offensive-security and security-engineering roles. Reach me on LinkedIn and I'm happy to walk you through any of the work above.</p>
+    <div class="cta">
+      <a class="primary" href="https://www.linkedin.com/in/iceberg-deep" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a href="https://github.com/iceberg-deep" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" onclick="window.print();return false;">Save as PDF</a>
+    </div>
+  </div>
+</div></section>
+
+</main>
+
+<footer><span class="accent">Justen James Phillips</span> · Detection-Informed Penetration Tester · Oakland, CA</footer>
+</body>
+</html>
